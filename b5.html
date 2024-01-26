@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+      .card {
+        background-color: bisque;
+        width: 300px;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <i class="fa-brands fa-twitter"> </i>
+        <div class="tw"></div>
+        <p>twitter followers</p>
+      </div>
+      <div class="card">
+        <i class="fa-brands fa-youtube"></i>
+        <div class="ytb"></div>
+        <p>youtube subscibers</p>
+      </div>
+      <div class="card">
+        <i class="fa-brands fa-facebook"></i>
+        <div class="fb"></div>
+        <p>fabebook fans</p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let number1 = document.querySelector(".tw");
+
+        function run1() {
+          let number = 1;
+
+          function updateNumber() {
+            number1.textContent = number;
+            number++;
+
+            if (number <= 12000) {
+              setTimeout(updateNumber, 0.02);
+            }
+          }
+
+          updateNumber();
+        }
+
+        run1();
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        let number1 = document.querySelector(".ytb");
+
+        function run1() {
+          let number = 1;
+
+          function updateNumber() {
+            number1.textContent = number;
+            number++;
+
+            if (number <= 5000) {
+              setTimeout(updateNumber, 0.02);
+            }
+          }
+
+          updateNumber();
+        }
+
+        run1();
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        let number1 = document.querySelector(".fb");
+
+        function run1() {
+          let number = 1;
+
+          function updateNumber() {
+            number1.textContent = number;
+            number++;
+
+            if (number <= 7500) {
+              setTimeout(updateNumber, 0.02);
+            }
+          }
+
+          updateNumber();
+        }
+
+        run1();
+      });
+    </script>
+
+    <script
+      src="https://kit.fontawesome.com/bd9aef7112.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

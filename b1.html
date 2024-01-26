@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+      }
+
+      .tron {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        border: 3px solid aqua;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+
+      .mau {
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+      }
+
+      .disabled {
+        background-color: #ddd;
+        color: #555;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tron" id="step1">1</div>
+      <div class="tron" id="step2">2</div>
+      <div class="tron" id="step3">3</div>
+      <div class="tron" id="step4">4</div>
+    </div>
+    <div>
+      <button onclick="prev()" id="prevButton" class="tru mau">prev</button>
+      <button onclick="next()" id="nextButton" class="cong mau">next</button>
+    </div>
+    <script>
+      let currentStep = 1;
+
+      function next() {
+        if (currentStep < 4) {
+          currentStep++;
+          updateSteps();
+          updateButtons();
+        }
+      }
+
+      function prev() {
+        if (currentStep > 1) {
+          currentStep--;
+          updateSteps();
+          updateButtons();
+        }
+      }
+
+      function updateSteps() {
+        for (let i = 1; i <= 4; i++) {
+          const step = document.getElementById(`step${i}`);
+          if (i <= currentStep) {
+            step.classList.add("mau");
+          } else {
+            step.classList.remove("mau");
+          }
+        }
+      }
+
+      function updateButtons() {
+        let prevButton = document.getElementById("prevButton");
+        let nextButton = document.getElementById("nextButton");
+
+        prevButton.disabled = currentStep === 1;
+        nextButton.disabled = currentStep === 4;
+        if (prevButton.disabled) {
+          prevButton.classList.add("disabled");
+        } else {
+          prevButton.classList.remove("disabled");
+        }
+
+        if (nextButton.disabled) {
+          nextButton.classList.add("disabled");
+        } else {
+          nextButton.classList.remove("disabled");
+        }
+      }
+      updateSteps();
+      updateButtons();
+    </script>
+  </body>
+</html>

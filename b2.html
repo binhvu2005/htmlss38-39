@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        .material-symbols-outlined{
+            width: 50px;
+            height: 50px;
+            border: 10px solid purple;
+        }
+        .change{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            margin-left: 80px;
+            
+        }
+        .inp{
+            width: 200px;
+            height: 50px;
+        }
+        .a{
+            width: 210px;
+            border: 10px solid purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="btn" onclick="change()" class="change" ><button class="material-symbols-outlined change">search</button></div>
+    </div>
+       <script>
+    let start = document.getElementById("container")
+    let count=2
+    function change(){
+        count++
+       if(count%2!=0){
+        start.innerHTML=`<div id="container">
+        <div id="btn" onclick="change()" class="change" ><button class="material-symbols-outlined change">search</button></div>
+        <input type="search" class="inp" placeholder="search...">
+    </div>`
+        start.classList.add("a")
+       }else{
+        start.innerHTML=`<div id="container">
+        <div id="btn" onclick="change()" class="change" ><button class="material-symbols-outlined change">search</button></div>
+    </div>`
+        start.classList.remove("a")
+        start.classList.remove("material-symbols-outlined")
+       }
+    }
+   </script>
+</body>
+</html>

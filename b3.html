@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #fullscreen-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 100; 
+    transition: opacity 2s;
+  }
+
+  #overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    color: white;
+    opacity: 0;
+    transition: opacity 2s;
+  }
+</style>
+</head>
+<body>
+  <img id="fullscreen-img" src="https://th.bing.com/th/id/OIP.YAQNF2sHHYoVFdplPYcXfAHaLB?rs=1&pid=ImgDetMain" alt="Fullscreen Image">
+  <div id="overlay" style="color: rgb(255, 82, 82);">100%</div>
+
+  <script>
+    window.addEventListener('load', function() {
+      let img = document.getElementById('fullscreen-img');
+      let overlay = document.getElementById('overlay');
+      img.style.opacity = 0.1;
+      overlay.style.opacity = 1;
+      setTimeout(function() {
+        img.style.opacity = 1;
+      }, 1000); 
+
+      let overlayOpacity = 1;
+      let overlayInterval = setInterval(function() {
+        if (overlayOpacity <= 0) {
+          clearInterval(overlayInterval);
+        } else {
+          overlayOpacity -= 0.01;
+          overlay.style.opacity = overlayOpacity;
+          overlay.innerHTML = Math.round(overlayOpacity * 100) + "%";
+        }
+      }, 20);
+
+      setTimeout(function() {
+        overlay.style.opacity = 0;
+      }, 1000); 
+    });
+  </script>
+</body>
+</html>
