@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weight Converter</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input">
+      <form>
+        <label for="pound">Pounds</label>
+        <input type="text" id="pound" />
+        <label for="kg">Kilograms</label>
+        <input type="text" id="kg" />
+        <label for="oun">Ounces</label>
+        <input type="text" id="oun" />
+        <label for="g">Grams</label>
+        <input type="text" id="g" />
+        <label for="stones">Stones</label>
+        <input type="text" id="stones" />
+      </form>
+    </div>
+    <p id="a"></p>
+
+    <script>
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", updateValues);
+      });
+
+      function updateValues(e) {
+        const value = parseFloat(e.target.value);
+        if (isNaN(value)) return;
+
+        const id = e.target.id;
+        const conversions = {
+          pound: {
+            kg: value / 2.20462,
+            oun: value * 16,
+            g: value * 453.592,
+            stones: value / 14,
+          },
+          kg: {
+            pound: value * 2.20462,
+            oun: value * 35.274,
+            g: value * 1000,
+            stones: value * 0.157473,
+          },
+          oun: {
+            pound: value / 16,
+            kg: value / 35.274,
+            g: value * 28.3495,
+            stones: value / 224,
+          },
+          g: {
+            pound: value / 453.592,
+            kg: value / 1000,
+            oun: value / 28.3495,
+            stones: value / 6350.29,
+          },
+          stones: {
+            pound: value * 14,
+            kg: value / 0.157473,
+            oun: value * 224,
+            g: value * 6350.29,
+          },
+        };
+        for (let otherId in conversions[id]) {
+          document.getElementById(otherId).value =
+            conversions[id][otherId].toFixed(2);
+        }
+      }
+    </script>
+  </body>
+</html>
