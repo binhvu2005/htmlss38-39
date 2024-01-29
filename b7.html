@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bt7</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(27, 27, 252);
+        }
+        main{   
+            background-color: rgb(3, 3, 105);
+            height:500px ;
+            width: 500px;
+            color: white;
+            font-size: 20px;
+            padding: 20px;
+        }
+        label{
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #length{
+            width: 35px;
+            height:25px
+        }
+        main> button{
+            background-color: rgb(202, 38, 16);
+            color: white;
+            width: 90%;
+            height: 40px;
+            font-size: 19px;
+        }
+        #result{
+            height: 40px;
+            width: 80%;
+            background-color: black;
+            color: white;
+        }
+        div> button{
+            height: 35px;
+        
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Password Generator</h1>
+        <div>
+            <input id="result" type="text">
+            <button id="clipboard">clipboard</button>
+        </div>
+        <div class="container">
+            <label>Password Length</label> <input type="number" id="length"> <br>
+            <label>Include uppercase letter</label> <input type="checkbox" id="uppercase"> <br>
+            <label>Include lowercase letter</label> <input type="checkbox" id="lowercase"> <br>
+            <label>Include numbers</label> <input type="checkbox" id="inclNumbers"> <br>
+            <label>Include symbols</label> <input type="checkbox" id="inclSymbols"> <br>
+        </div>
+        <button>Generator Password</button>
+        </main>
+    <script>
+        let result=document.getElementById("result");
+        let lengthPW=document.getElementById("length"); 
+        let uppercase=document.getElementById("uppercase");
+        let lowercase=document.getElementById("lowercase");
+        let inclNumbers=document.getElementById("inclNumbers");
+        let inclSymbols=document.getElementById("inclSymbols");
+        let btn= document.querySelector("main> button");
+        let clip_board=document.getElementById("clipboard");
+        clip_board.addEventListener("click",function () {
+            result.select(result);
+            navigator.clipboard.writeText(result.value);
+        })
+        uppercase.addEventListener("input",function(){
+            uppercase.classList.toggle("active");
+           
+        })
+        lowercase.addEventListener("input",function(){
+            lowercase.classList.toggle("active");
+        
+        })
+        inclNumbers.addEventListener("input",function(){
+            inclNumbers.classList.toggle("active");
+           
+        })
+        inclSymbols.addEventListener("input",function(){
+            inclSymbols.classList.toggle("active");
+          
+        })
+        btn.addEventListener("click",function () {
+            let uppercaseLetters='';
+            let lowercaseLetters='';
+            let numbers='';
+            let specialCharacters='';
+            let str='';
+            let length_str=parseInt(lengthPW.value);
+            if (uppercase.classList.contains("active")) {
+                uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                length_str--;
+            }
+            if (inclSymbols.classList.contains("active")) {
+                 specialCharacters = '!@#$%^&*()_-+=<>?';
+                length_str--;
+
+            }
+            if (inclNumbers.classList.contains("active")) {
+                 numbers = '0123456789';
+                length_str--;
+
+            }
+            if (lowercase.classList.contains("active")) {
+                 lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+                length_str--;
+
+            }
+            let allCharacters = uppercaseLetters + lowercaseLetters + specialCharacters + numbers;
+            let randomUppercase = uppercaseLetters.charAt(Math.floor(Math.random() * uppercaseLetters.length));
+            let randomLowercase = lowercaseLetters.charAt(Math.floor(Math.random() * lowercaseLetters.length));
+            let randomSpecial = specialCharacters.charAt(Math.floor(Math.random() * specialCharacters.length));
+            let randomNumber = numbers.charAt(Math.floor(Math.random() * numbers.length));
+            str = randomUppercase + randomLowercase + randomSpecial + randomNumber;
+            
+            for (let i = 0; i < length_str; i++) {
+                let randomIndex = Math.floor(Math.random() * allCharacters.length);
+             
+                str += allCharacters.charAt(randomIndex);
+            }
+            result.value=str;
+        })
+    </script>
+</body>
+</html>

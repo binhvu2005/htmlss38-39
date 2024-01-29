@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<input type="text" id="search_input" oninput="search()" placeholder="Search by name">
+
+<table id="data_table">
+  <tr>
+    <th>name</th>
+    <th>country</th>
+  </tr>
+  <tr>
+    <td>abcd </td>
+    <td>yui</td>
+  </tr>
+  <tr>
+    <td>efgh</td>
+    <td>L,lnm</td>
+  </tr>
+  <tr>
+    <td>acbe</td>
+    <td>ấcc</td>
+  </tr>
+</table>
+
+<script>
+  function search() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search_input");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("data_table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) { 
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
